@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import OrderScan from '@/components/OrderScan'
+import OrdersList from '@/components/OrdersList'
 
 import firebase from 'firebase'
 import 'firebase/auth'
@@ -35,6 +36,14 @@ const router = new Router({
         path: '/order-scan',
         name: 'OrderScan',
         component: OrderScan,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: '/orders-list',
+        name: 'OrdersList',
+        component: OrdersList,
         meta: {
           requiresAuth: true
         }

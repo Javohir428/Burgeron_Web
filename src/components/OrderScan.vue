@@ -3,7 +3,7 @@
     <div class="card">
         <div class="row">
             <div class="col-12 text-center"  v-if="obj == ''">
-                <vue-qr-reader stop-on-scanned="true" vide-width="200" vide-height="200" use-back-camera="true" v-on:code-scanned="codeArrived" />
+                <vue-qr-reader vide-width="200" vide-height="200" v-on:error-captured="errorCaptured" v-on:code-scanned="codeArrived" />
             </div>
             <div class="col-sm-12 text-center" v-if="obj != ''">
                 <button @click="refreshCompanent()" class="btn btn-success" style="width: 200px;">Scan Order</button>
@@ -28,7 +28,7 @@
                 <td class="text-center">{{order.phone}}</td>
                 <td class="text-center">{{order.restaurantName}}</td>
                 <td class="text-center">{{order.date}}</td>
-                <td class="text-center">{{order.total}}</td>
+                <td class="text-center">${{order.total}}</td>
             </tr>
             </tbody>
         </table>
@@ -93,7 +93,7 @@ export default {
                 default:
                 this.errorMessage = 'UNKNOWN ERROR: ' + error.message
             }
-            alert.error(this.errorMessage);
+            console.error(this.errorMessage);
         },
     },
 
